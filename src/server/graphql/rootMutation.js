@@ -32,6 +32,17 @@ import resendTeamInvite from 'server/graphql/mutations/resendTeamInvite';
 import cancelTeamInvite from 'server/graphql/mutations/cancelTeamInvite';
 import removeTeamMember from 'server/graphql/mutations/removeTeamMember';
 import setOrgUserRole from 'server/graphql/mutations/setOrgUserRole';
+import updateCreditCard from 'server/graphql/mutations/updateCreditCard';
+import upgradeToPro from 'server/graphql/mutations/upgradeToPro';
+import createProject from 'server/graphql/mutations/createProject';
+import inactivateUser from 'server/graphql/mutations/inactivateUser';
+import stripeCreateInvoice from 'server/graphql/mutations/stripeCreateInvoice';
+import stripeFailPayment from 'server/graphql/mutations/stripeFailPayment';
+import stripeSucceedPayment from 'server/graphql/mutations/stripeSucceedPayment';
+import stripeUpdateCreditCard from 'server/graphql/mutations/stripeUpdateCreditCard';
+import stripeUpdateInvoiceItem from 'server/graphql/mutations/stripeUpdateInvoiceItem';
+import addOrg from 'server/graphql/mutations/addOrg';
+import updateOrg from 'server/graphql/mutations/updateOrg';
 
 const rootFields = Object.assign({},
   agenda,
@@ -52,15 +63,18 @@ export default new GraphQLObjectType({
     acceptTeamInviteEmail,
     acceptTeamInviteNotification,
     addGitHubRepo,
+    addOrg,
     addProvider,
     addSlackChannel,
     approveToOrg,
     cancelTeamInvite,
     clearNotification,
     createGitHubIssue,
+    createProject,
     githubAddAssignee,
     githubAddMember,
     githubRemoveMember,
+    inactivateUser,
     inviteTeamMembers,
     joinIntegration,
     leaveIntegration,
@@ -72,6 +86,14 @@ export default new GraphQLObjectType({
     requestFacilitator,
     resendTeamInvite,
     segmentEventTrack,
-    setOrgUserRole
+    setOrgUserRole,
+    stripeCreateInvoice,
+    stripeFailPayment,
+    stripeSucceedPayment,
+    stripeUpdateCreditCard,
+    stripeUpdateInvoiceItem,
+    updateCreditCard,
+    updateOrg,
+    upgradeToPro
   })
 });

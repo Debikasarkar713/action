@@ -1,36 +1,22 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import withStyles from 'universal/styles/withStyles';
-import {css} from 'aphrodite-local-styles/no-important';
-import appTheme from 'universal/styles/theme/appTheme';
 
-// TODO: make this a tooltip module where the container controls tooltip position and opened/closed states
+import ControlledTooltip from 'universal/components/Tooltip/ControlledTooltip';
+import HoverTooltip from 'universal/components/Tooltip/HoverTooltip';
+import withCoords from 'universal/decorators/withCoords';
 
-const Tooltip = (props) => {
-  const {
-    children,
-    styles
-  } = props;
-  return (
-    <div className={css(styles.meetingPromptRoot)}>
-      {children}
-    </div>
+const Tooltip = (props) =>
+  typeof props.isOpen === 'boolean' ? (
+    <ControlledTooltip {...props} />
+  ) : (
+    <HoverTooltip {...props} />
   );
-};
 
 Tooltip.propTypes = {
-  children: PropTypes.any,
-  orientation: PropTypes.object,
-  styles: PropTypes.object
+  tip: PropTypes.element.isRequired,
+  children: PropTypes.element.isRequired,
+  setOriginCoords: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool
 };
 
-const styleThunk = (theme, {orientation}) => ({
-  tooltip: {
-    backgroundColor: appTheme.palette.dark80a,
-    content: `"${orientation}"`,
-    maxWidth: '16rem',
-    width: 'auto'
-  }
-});
-
-export default withStyles(styleThunk)(Tooltip);
+export default withCoords(Tooltip);
